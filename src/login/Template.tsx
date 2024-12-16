@@ -5,6 +5,7 @@ import type { TemplateProps } from "keycloakify/login/TemplateProps";
 import { clsx } from "keycloakify/tools/clsx";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useEffect } from "react";
+import logoPngUrl from "./assets/images/logo.png";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 
@@ -52,13 +53,14 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <div className={kcClsx("kcLoginClass")}>
+        <div className={clsx(kcClsx("kcLoginClass"), "")}>
             <div id="kc-header" className={kcClsx("kcHeaderClass")}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
-                    {msg("loginTitleHtml", realm.displayNameHtml)}
-                </div>{" "}
+                    <span className="hidden">{msg("loginTitleHtml", realm.displayNameHtml)}</span>
+                    <img src={logoPngUrl} width={300} className="mx-auto" alt={realm.displayNameHtml} />
+                </div>
             </div>
-            <div className={kcClsx("kcFormCardClass")}>
+            <div className={clsx(kcClsx("kcFormCardClass"), "border border-gray-300 rounded-2xl border-lg")}>
                 <header className={kcClsx("kcFormHeaderClass")}>
                     {enabledLanguages.length > 1 && (
                         <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
